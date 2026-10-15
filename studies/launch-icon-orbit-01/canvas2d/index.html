@@ -1,0 +1,34 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Icon Cloud Intro · motion study</title>
+<style>html,body{margin:0;background:#f3f3f5}canvas{display:block}</style>
+<canvas id="stage" width="1920" height="1080"></canvas>
+<script type="module">
+// Icon Cloud Intro — motion study. Title lines are parameters:  index.html?line1=Introducing&line2=LaunchReel&line2Color=%23D2412A
+// icon-cloud-intro:xjp.frame-protocol.v1 页面。运动在 keys.json(xjp.motion-keys.v1);标题两行是参数,运行时生成文字贴图。
+import { renderFrame } from "./player.js";
+const Q = new URLSearchParams(location.search);
+const DEF = { line1: "Introducing", line2: "LaunchReel", line1Color: "#000000", line2Color: "#D2412A", fontSize: 0 };
+function textTexture(text, color, px) {
+  const c = document.createElement("canvas"), g = c.getContext("2d");
+  g.font = `600 ${px}px TemplateSans`; const w = Math.ceil(g.measureText(text).width) + 40, h = Math.ceil(px * 1.5);
+  c.width = w; c.height = h; g.font = `600 ${px}px TemplateSans`; g.fillStyle = color; g.textBaseline = "middle"; g.textAlign = "center";
+  g.fillText(text, w / 2, h / 2); return c;
+}
+let keys, tex = {}, ctx;
+const load = (src) => new Promise((ok, bad) => { const i = new Image(); i.onload = () => ok(i); i.onerror = bad; i.src = src; });
+window.__ready = false;
+(async () => {
+  keys = await (await fetch("keys.json")).json();
+  const P = { ...DEF, ...Object.fromEntries(Q) };
+  const ff = new FontFace("TemplateSans", "url(fonts/Inter-SemiBold.ttf)"); await ff.load(); document.fonts.add(ff);
+  // type size: "Introducing" is ~786 px wide; your own text keeps the same size
+  const m = document.createElement("canvas").getContext("2d"); m.font = "600 100px TemplateSans";
+  const px = +P.fontSize || Math.round(100 * 786 / m.measureText("Introducing").width);
+  for (const n of new Set(keys.layers.map((l) => l.texture))) if (!n.startsWith("title_")) tex[n] = await load(`textures/${n}.png`);
+  tex.title_line1 = textTexture(P.line1, P.line1Color, px); tex.title_line2 = textTexture(P.line2, P.line2Color, px);
+  ctx = document.getElementById("stage").getContext("2d", { willReadFrequently: true });
+  window.renderAt = (f) => renderFrame(ctx, keys, tex, f, 24);     // frame number, 24 fps, 0–99
+  window.renderAt(46); window.__ready = true;
+})();
+</script>

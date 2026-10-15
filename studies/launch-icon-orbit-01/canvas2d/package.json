@@ -1,0 +1,3 @@
+{ "name": "icon-cloud-intro", "private": true, "type": "module", "license": "MIT",
+  "scripts": { "render": "node render.mjs frames" },
+  "dependencies": { "playwright-core": "^1.47.0" } }
