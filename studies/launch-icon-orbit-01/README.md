@@ -2,7 +2,9 @@
 
 A 4-second launch intro rebuilt from scratch as a **motion study**: an app icon sits in the centre, the camera pulls back while 44 items fly in from the lens and settle into a grid, about half of them keep turning on their own, then everything rushes back at the viewer with motion blur and the title rises over a soft gradient.
 
-It ships the same motion three ways — **web (canvas 2D)**, **After Effects**, **Blender** — all driven by one parameter file. The 44 items and the centre icon are **neutral placeholder tiles**: drop in your own PNGs.
+It ships the same motion three ways — **web (canvas 2D)**, **After Effects**, **Blender** — all driven by one parameter file. It comes **ready to use**: the 44 items are finished soft-3D objects (paper plane, mug, rocket, rubber duck…) and the centre shows the LaunchReel icon as a stand-in for yours. Change the title, swap the centre icon for your own, render.
+
+现成可用:44 个物件是做好的软 3D 图标,中心是 LaunchReel 图标(示例,换成你自己的)。改标题、换中心图标,就能出片。
 
 ![grid](media/grid.png)
 ![title](media/title.png)
@@ -33,7 +35,7 @@ All of it lives in [`canvas2d/build/motion_params.json`](canvas2d/build/motion_p
 
 把透明 PNG 放进 `canvas2d/textures/`,在 `slot_map.json` 里把槽位指到你的文件名(`icon` 是中心图标),再运行 `generate.py` 即可。
 
-Want a ready-made set of soft-3D objects? See the icon pack at [compreel.com/packs/launch-icons-01](https://compreel.com/packs/launch-icons-01).
+The 44 objects ship at 512 px in `canvas2d/textures/` (named by what they are, e.g. `rubber-duck.png`); keep them, or replace any of them with your own.
 
 ## Render / 出片
 
@@ -57,4 +59,4 @@ After changing icons or parameters, refresh the AE/Blender data: `node tools/sam
 
 ## Licence
 
-Code, parameters, placeholder tiles and gradients: MIT. Font: Inter (SIL Open Font License 1.1, `canvas2d/fonts/Inter-OFL.txt`; `Inter-SemiBold-NoOverlap.ttf` is the same font with overlapping contours merged for Blender).
+Code, parameters and gradients: MIT. The 44 object icons (`canvas2d/textures/`, `ae/textures/`, packed in the `.blend`) are ours and free to use in any project, commercial included; please don't resell or redistribute them as an icon pack. The LaunchReel icon and name are our trademark and only a stand-in: replace them before you publish. Font: Inter (SIL Open Font License 1.1, `canvas2d/fonts/Inter-OFL.txt`; `Inter-SemiBold-NoOverlap.ttf` is the same font with overlapping contours merged for Blender).

@@ -10,7 +10,7 @@ Open, shot-by-shot **motion studies** of product films we admire, rebuilt as edi
 |---|---|---|
 | [`studies/launch-icon-orbit-01/`](studies/launch-icon-orbit-01/) | a launch-intro opening shot | eased log-space camera pull-back, per-item depth settle with one shared overshoot ease, per-item spin, radial rush-out with a per-frame shutter, title timing |
 
-Each study folder has its own README (中英), the keyframe data, the generator that produced it, and three renderable projects (`canvas2d/`, `ae/`, `blender/`). Icons and other brand artwork are replaced by placeholder squares; put your own in.
+Each study folder has its own README (中英), the keyframe data, the generator that produced it, and three renderable projects (`canvas2d/`, `ae/`, `blender/`). launch-icon-orbit-01 ships ready to use with 44 of our own soft-3D object icons (free to use, not for resale as an icon pack); swap the centre icon and title for your own.
 
 ## How it was made · 做法
 
